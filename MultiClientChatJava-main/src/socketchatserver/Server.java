@@ -1,4 +1,4 @@
-package socketchatmulticlient;
+package socketchatserver;
 
 import java.io.*;
 import java.net.*;
@@ -6,9 +6,14 @@ import java.net.*;
 public class Server {
 
     private ServerSocket sSocket;
+    private Room[] roomList;
 
     public Server(ServerSocket sSocket) {
         this.sSocket = sSocket;
+        this.roomList = new Room[5];
+        for (Room r : this.roomList) {
+            r = new Room();
+        }
     }
 
     public void startServer() {
@@ -17,9 +22,13 @@ public class Server {
             while (!sSocket.isClosed()) {
                 Socket socket = sSocket.accept();
                 System.out.println("Client connesso");
-                ClientThread clientThread = new ClientThread(socket);
-                Thread t = new Thread(clientThread);
-                t.start();
+                DataInputStream dis = new DataInputStream(socket.getInputStream());
+                int nRoom = dis.readInt();
+                System.out.println(nRoom);
+                this.roomList[nRoom - 1].addClient(socket, (nRoom - 1));
+//                ClientThread clientThread = new ClientThread(socket);
+//                Thread t = new Thread(clientThread);
+//                t.start();
             }
         } catch (IOException e) {
 
@@ -44,6 +53,6 @@ public class Server {
             server.startServer();
         } catch (IOException ex) {
         }
-        
+
     }
 }

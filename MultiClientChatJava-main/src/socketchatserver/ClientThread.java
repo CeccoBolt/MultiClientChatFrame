@@ -1,4 +1,4 @@
-package socketchatmulticlient;
+package socketchatserver;
 
 import java.io.*;
 import java.net.*;
@@ -11,15 +11,17 @@ public class ClientThread implements Runnable {
     private BufferedReader br;
     private BufferedWriter bw;
     private String user;
+    private int roomConnected;
 
-    public ClientThread(Socket socket) {
+    public ClientThread(Socket socket, int roomConnected) {
         try {
             this.socket = socket;
             this.bw = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
             this.br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             this.user = br.readLine();
             alClientThread.add(this);
-            msgBroadcast(user + " connesso!");
+            msgBroadcast(user + " connesso alla stanza " + roomConnected);
+            this.roomConnected = roomConnected;
         } catch (IOException e) {
             close(socket, br, bw);
         }
@@ -47,7 +49,7 @@ public class ClientThread implements Runnable {
     public void msgBroadcast(String msgSend) {
         for (ClientThread clientThread : alClientThread) {
             try {
-                if (!clientThread.user.equals(user)) {
+                if (!clientThread.user.equals(user) && clientThread.roomConnected == roomConnected) {
                     clientThread.bw.write(msgSend);
                     clientThread.bw.newLine();
                     clientThread.bw.flush();

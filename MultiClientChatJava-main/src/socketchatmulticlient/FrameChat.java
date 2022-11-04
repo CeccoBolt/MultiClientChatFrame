@@ -1,5 +1,6 @@
 package socketchatmulticlient;
 
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 import javax.swing.*;
@@ -170,6 +171,14 @@ public class FrameChat extends javax.swing.JFrame {
             String address = txtAddress.getText();
             int port = Integer.parseInt(txtPort.getText());
             Socket socket = new Socket(address, port);
+            JPanel pnl2 = new JPanel();
+            pnl2.add(new JLabel("Stanza: "));
+            JSpinner spnStanza = new JSpinner(new SpinnerNumberModel(1, 1, 5, 1));
+            pnl2.add(spnStanza);
+            JOptionPane.showMessageDialog(null, pnl2, "Scegli la stanza dove collegarti", JOptionPane.PLAIN_MESSAGE);
+            int value = (int) spnStanza.getValue();
+            DataOutputStream dos = new DataOutputStream(socket.getOutputStream());
+            dos.write(value);
             client = new Client(socket, user);
             client.listenMsg(atxChat);
         } catch (NumberFormatException nfe) {
