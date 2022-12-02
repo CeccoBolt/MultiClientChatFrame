@@ -3,11 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/michaelcecchini/Downloads/MultiClientChatJava-main/src/socketchatmulticlient/Client.java</file>
-            <file>file:/Users/michaelcecchini/Downloads/MultiClientChatJava-main/src/socketchatmulticlient/ClientThread.java</file>
-            <file>file:/Users/michaelcecchini/Downloads/MultiClientChatJava-main/src/socketchatmulticlient/SocketChatMultiClient.java</file>
-            <file>file:/Users/michaelcecchini/Downloads/MultiClientChatJava-main/src/socketchatmulticlient/FrameChat.java</file>
-            <file>file:/Users/michaelcecchini/Downloads/MultiClientChatJava-main/src/socketchatmulticlient/Server.java</file>
+            <file>file:/Users/michaelcecchini/Documents/GitHub/MultiClientChatFrame/MultiClientChatJava-main/src/socketchatserver/ClientThread.java</file>
+            <file>file:/Users/michaelcecchini/Documents/GitHub/MultiClientChatFrame/MultiClientChatJava-main/src/socketchatserver/Server.java</file>
+            <file>file:/Users/michaelcecchini/Documents/GitHub/MultiClientChatFrame/MultiClientChatJava-main/src/socketchatserver/Room.java</file>
+            <file>file:/Users/michaelcecchini/Documents/GitHub/MultiClientChatFrame/MultiClientChatJava-main/src/socketchatmulticlient/Client.java</file>
+            <file>file:/Users/michaelcecchini/Documents/GitHub/MultiClientChatFrame/MultiClientChatJava-main/src/socketchatmulticlient/FrameChat.java</file>
         </group>
     </open-files>
 </project-private>

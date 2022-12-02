@@ -176,9 +176,9 @@ public class FrameChat extends javax.swing.JFrame {
             JSpinner spnStanza = new JSpinner(new SpinnerNumberModel(1, 1, 5, 1));
             pnl2.add(spnStanza);
             JOptionPane.showMessageDialog(null, pnl2, "Scegli la stanza dove collegarti", JOptionPane.PLAIN_MESSAGE);
-            int value = (int) spnStanza.getValue();
+            int value =  Integer.parseInt(spnStanza.getValue().toString());
             DataOutputStream dos = new DataOutputStream(socket.getOutputStream());
-            dos.write(value);
+            dos.writeInt(value);
             client = new Client(socket, user);
             client.listenMsg(atxChat);
         } catch (NumberFormatException nfe) {

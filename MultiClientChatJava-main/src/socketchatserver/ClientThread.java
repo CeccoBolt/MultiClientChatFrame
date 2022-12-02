@@ -20,8 +20,8 @@ public class ClientThread implements Runnable {
             this.br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             this.user = br.readLine();
             alClientThread.add(this);
-            msgBroadcast(user + " connesso alla stanza " + roomConnected);
             this.roomConnected = roomConnected;
+            msgBroadcast(user + " connesso alla stanza " + (roomConnected + 1));
         } catch (IOException e) {
             close(socket, br, bw);
         }

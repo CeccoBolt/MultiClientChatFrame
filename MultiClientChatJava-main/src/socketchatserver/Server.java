@@ -11,8 +11,8 @@ public class Server {
     public Server(ServerSocket sSocket) {
         this.sSocket = sSocket;
         this.roomList = new Room[5];
-        for (Room r : this.roomList) {
-            r = new Room();
+        for (int i = 0; i < roomList.length; i++) {
+            roomList[i] = new Room();
         }
     }
 
