@@ -22,6 +22,7 @@ public class ClientThread implements Runnable {
             alClientThread.add(this);
             this.roomConnected = roomConnected;
             msgBroadcast(user + " connesso alla stanza " + (roomConnected + 1));
+            //msgBroadcast(getUsersList());
         } catch (IOException e) {
             close(socket, br, bw);
         }
@@ -59,6 +60,16 @@ public class ClientThread implements Runnable {
             }
         }
     }
+
+//    public String getUsersList() {
+//        String list = "";
+//        for (ClientThread clientThread : alClientThread) {
+//            if (!clientThread.user.equals(user) && clientThread.roomConnected == roomConnected) {
+//                list += clientThread.user + "|";
+//            }
+//        }
+//        return list;
+//    }
 
     public void exitClient() {
         alClientThread.remove(this);

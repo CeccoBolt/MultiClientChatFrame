@@ -2,7 +2,7 @@ package socketchatmulticlient;
 
 import java.io.*;
 import java.net.Socket;
-import javax.swing.JTextArea;
+import javax.swing.*;
 
 public class Client {
 
@@ -11,6 +11,7 @@ public class Client {
     private BufferedWriter bw;
     private String user;
     private JTextArea atxMsg;
+    private JLabel lblUsers;
 
     public Client(Socket socket, String user) {
         try {
@@ -28,7 +29,7 @@ public class Client {
 
     public void sendMsg(String msgInput) {
         try {
-            
+
             if (socket.isConnected()) {
                 bw.write(user + ": " + msgInput);
                 bw.newLine();
@@ -57,6 +58,31 @@ public class Client {
         }).start();
     }
 
+//    public void listenUsersList(JLabel lblUser) {
+//        lblUsers = lblUser;
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                String readList;
+//                while (socket.isConnected()) {
+//                    try {
+//                        readList = br.readLine();
+//                        if (readList.contains("|")) {
+//                            String[] list = readList.split("|");
+//                            readList = "";
+//                            for (int i = 0; i < list.length; i++) {
+//                                readList += list[i] + "\n";
+//                            }
+//                            lblUsers.setText(readList);
+//                        }
+//                    } catch (IOException e) {
+//                        close(socket, br, bw);
+//                    }
+//                }
+//            }
+//        }).start();
+//    }
+
 //    public static void main(String[] args) throws IOException {
 //        Scanner scanner = new Scanner(System.in);
 //        System.out.print("Inserisci username: ");
@@ -66,7 +92,6 @@ public class Client {
 //        client.listenMsg();
 //        client.sendMsg();
 //    }
-
     public void close(Socket socket, BufferedReader br, BufferedWriter bw) {
         try {
             if (br != null) {
@@ -82,11 +107,11 @@ public class Client {
             e.printStackTrace();
         }
     }
-    
+
     public void closeSocket() throws IOException {
         //close(socket, br, bw);
         try {
-            
+
             if (socket.isConnected()) {
                 bw.write("EXIT");
                 bw.newLine();
